@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>홍승재 이력서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #e5e5e5; }
+  body {
+    font-family: "Noto Sans KR", sans-serif; color: #111111;
+    display: flex; justify-content: center;
+    padding: 24pt 0;
+  }
+
+  /* A4 페이지 가이드 (화면 미리보기 전용, 인쇄 시 제거) */
+  .page {
+    width: 595pt;
+    height: 842pt;
+    background: #ffffff;
+    box-shadow: 0 1pt 3pt rgba(0,0,0,0.15), 0 0 0 1pt rgba(0,0,0,0.06);
+    padding: 30pt;
+    display: flex;
+    flex-direction: column;
+  }
+  @media print {
+    html, body { background: #ffffff; padding: 0; }
+    .page { box-shadow: none; }
+  }
+
+  /* VStack { top-row(name_info), body-row(work, contact) } */
+  .top-row { display: flex; flex-direction: column; gap: 6pt; }
+  .body-row { display: flex; gap: 20pt; margin-top: 8pt; }
+
+  .col-left { flex: 2; min-width: 0; display: flex; flex-direction: column; gap: 12pt; }
+  .col-right { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12pt; }
+
+  h1 { font-size: 21pt; font-weight: 700; line-height: 1.3; }
+  .title-role { font-size: 11pt; font-weight: 500; color: #6b7280; margin-top: 2pt; }
+
+  .section h2 { font-size: 10.5pt; font-weight: 700; line-height: 1.3; margin-bottom: 7pt; }
+  .about p { font-size: 8.7pt; font-weight: 400; line-height: 1.55; color: #6b7280; }
+  .about p + p { margin-top: 6pt; }
+
+  /* Work Experience: 회사 -> 프로젝트(서브블록) -> 불릿 */
+  .company { display: flex; flex-direction: column; gap: 8pt; }
+  .company + .company { margin-top: 10pt; }
+  .company-head .title { font-size: 10pt; font-weight: 700; }
+  .company-head .period { font-size: 8pt; color: #6b7280; margin-top: 1pt; }
+
+  .subproject { display: flex; flex-direction: column; gap: 3pt; }
+  .subproject .title { font-size: 9pt; font-weight: 700; }
+  .subproject ul { display: flex; flex-direction: column; gap: 2pt; margin-top: 1pt; }
+  .subproject li {
+    list-style: none; font-size: 8.3pt; line-height: 1.42; color: #6b7280;
+    padding-left: 10pt; position: relative;
+  }
+  .subproject li::before { content: "·"; position: absolute; left: 0; }
+
+  /* Side Projects: 설명 문단 포함 */
+  .side-list { display: flex; flex-direction: column; gap: 8pt; }
+  .side-entry .title { font-size: 9.5pt; font-weight: 700; }
+  .side-entry .period { font-size: 8pt; color: #6b7280; margin: 1pt 0 3pt; }
+  .side-entry .desc { font-size: 8.3pt; line-height: 1.48; color: #6b7280; }
+
+  /* Contact */
+  .contact-list { display: flex; flex-direction: column; gap: 7pt; }
+  .contact-list .row { display: flex; align-items: center; gap: 6pt; font-size: 9pt; }
+  .contact-list svg { flex-shrink: 0; }
+
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 5pt; }
+  .pill {
+    font-size: 8pt; font-weight: 500; padding: 4pt 7pt;
+    border: 1pt solid #d8d8de; border-radius: 5pt; line-height: 1.4;
+  }
+
+  .simple-list { display: flex; flex-direction: column; gap: 9pt; }
+  .simple-entry .title { font-size: 9pt; font-weight: 700; line-height: 1.4; }
+  .simple-entry .period { font-size: 8pt; font-weight: 400; line-height: 1.4; color: #6b7280; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top-row">
+    <h1>홍승재</h1>
+    <div class="title-role">iOS Developer</div>
+  </div>
+
+  <div class="body-row">
+  <div class="col-left">
+    <div class="section about">
+      <h2>About me</h2>
+      <p>고등학교 재학 중 JOBIS와 BallhuB를 개발하며 iOS 개발을 시작했습니다. 비웨이브(주) 입사 후 마음결 Mini를 iOS로 단독 개발·배포했고, 마음결 베이직의 Android 유지보수도 함께 맡고 있습니다.</p>
+      <p>"내가 편하면, 사용자는 불편할 수 있다"는 마음가짐으로 불편을 먼저 발견하고 해결합니다. AI를 활용해 더 빠르고 높은 품질로 제품 문제를 해결하는 데 관심이 많습니다.</p>
+    </div>
+
+    <div class="section">
+      <h2>Work Experience</h2>
+      <div class="company">
+        <div class="company-head">
+          <div class="title">비웨이브(주)  /  iOS Developer</div>
+          <div class="period">2024년 07월 01일 ~ 재직 중</div>
+        </div>
+
+        <div class="subproject">
+          <div class="title">마음결 Mini (신규 개발 및 운영)</div>
+          <ul>
+            <li>Claude Code로 OS 간 측정 알고리즘 통일 — iOS/Android PPG 파이프라인 스펙(fps·ROI·노출 lock) 통일, 배포 전후 DB 비교로 고품질 비율 iOS +24.2%p·Android +24.1%p 개선 검증</li>
+            <li>240fps PPG 파이프라인 최적화 — CIContext 인스턴스 재사용, raw byte 직접 접근으로 프레임당 1,600개 객체 생성 제거</li>
+            <li>Tuist 기반 Micro Feature Architecture 설계 — Feature 23개·Core/Domain/Shared/UI 13개 총 36개 모듈로 분리, 커스텀 Tuist Plugin(Configuration/Dependency/Environment)으로 DEV/STAGE/PROD 멀티 환경 빌드 구성</li>
+            <li>Xcode Cloud CI/CD 구축 — ci_post_clone 스크립트에서 mise·Tuist 설치 후 tuist generate 자동화해 클라우드 빌드 환경 문제 해결, SwiftLint 커스텀 룰을 빌드 스크립트로 전 모듈에 공유 적용</li>
+          </ul>
+        </div>
+
+        <div class="subproject">
+          <div class="title">마음결 베이직 (유지보수 및 기능 개발)</div>
+          <ul>
+            <li>Claude Code 활용 — Android 경험 없이 BLE 통합 개발 단독 수행, 기존 버그 7건 발견·수정</li>
+            <li>BLE/Classic 이중 블루투스 통합, DeviceConnector로 두 종류 측정 기기 추상화</li>
+            <li>블루투스 폴링 간격 256ms → 20ms 개선으로 실시간 측정 반응성 향상</li>
+          </ul>
+        </div>
+
+        <div class="subproject">
+          <div class="title">AI 업무 환경 설계</div>
+          <ul>
+            <li>Claude를 Notion에 연결한 회의록 자동 정리, 계획 승인 후 실행하는 AI 업무 하네스 설계</li>
+            <li>Android·iOS 배포 절차를 Skill로 관리해 동일 품질로 배포되도록 표준화</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Side Projects</h2>
+      <div class="side-list">
+        <div class="side-entry">
+          <div class="title">BallhuB  /  iOS Developer</div>
+          <div class="period">2024년 06월 ~ 2025년 05월</div>
+          <div class="desc">일일 방문자 6,000명 이상이 이용하는 해외 축구 커뮤니티 서비스. iOS 개발자로 참여해 Needle DI 구조에서 발생하던 초기화 순환 버그를 TCA(Scope) 구조로 전환하며 해결하고, JWT 자동 갱신 Provider와 Nuke 기반 이미지 캐싱으로 사용성을 개선했습니다.</div>
+        </div>
+        <div class="side-entry">
+          <div class="title">JOBIS v2  /  기획·개발·운영</div>
+          <div class="period">2023년 01월 ~ 2024년 01월</div>
+          <div class="desc">대덕소프트웨어마이스터고등학교 학생-기업 채용 관리 서비스. v1 사용자 피드백을 분석해 App/Core/Data/Domain/Presentation 레이어드 구조로 전면 개편하고, Presigned URL 기반 S3 업로드로 서버 부하를 분산했습니다. 200명 이상 전교생이 사용했습니다. RxSwift + ReactorKit 기반 단방향 데이터 흐름을 Reactor 44개에 적용해 상태관리 일관성을 확보하고, RxFlow Step 패턴(48개)으로 화면 전환 로직을 Reactor에서 분리했으며, Swinject Assembly로 의존성을 관리했습니다.</div>
+        </div>
+        <div class="side-entry">
+          <div class="title">DMS  /  iOS Developer</div>
+          <div class="period">2023년 02월 ~ 2023년 06월</div>
+          <div class="desc">대덕소프트웨어마이스터고등학교 기숙사 생활(잔류 신청, 급식, 자습실 예약)을 관리하는 교내 전공 동아리 앱. 잔류 신청 기능을 API 연동부터 전담 개발하고, 7개 Domain을 Factory 패턴으로 리팩토링했습니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-right">
+    <div class="section">
+      <h2>Contact Information</h2>
+      <div class="contact-list">
+        <div class="row">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
+          <span>gtw030488@gmail.com</span>
+        </div>
+        <div class="row">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="#111111"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.08.78 2.18v3.23c0 .3.21.66.8.55A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+          <span>github.com/winwx</span>
+        </div>
+        <div class="row">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="#111111"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          <span>linkedin.com/in/hongsjae</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Skills</h2>
+      <div class="skills-wrap">
+        <span class="pill">Swift</span>
+        <span class="pill">SwiftUI</span>
+        <span class="pill">UIKit</span>
+        <span class="pill">Combine</span>
+        <span class="pill">TCA</span>
+        <span class="pill">MVVM</span>
+        <span class="pill">Needle</span>
+        <span class="pill">Swinject</span>
+        <span class="pill">Kotlin</span>
+        <span class="pill">StoreKit</span>
+        <span class="pill">Core Bluetooth</span>
+        <span class="pill">AVFoundation</span>
+        <span class="pill">Git</span>
+        <span class="pill">RxSwift</span>
+        <span class="pill">ReactorKit</span>
+        <span class="pill">RxFlow</span>
+        <span class="pill">Tuist</span>
+        <span class="pill">SwiftLint</span>
+        <span class="pill">Xcode Cloud</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Activity</h2>
+      <div class="simple-list">
+        <div class="simple-entry">
+          <div class="title">교내 iOS 스터디 운영</div>
+          <div class="period">2022년 07월 ~ 2023년 01월</div>
+        </div>
+        <div class="simple-entry">
+          <div class="title">신입생 iOS 멘토링</div>
+          <div class="period">2024년 03월 ~ 2024년 04월</div>
+        </div>
+        <div class="simple-entry">
+          <div class="title">KWDC 참가</div>
+          <div class="period">2023년, 2024년</div>
+        </div>
+        <div class="simple-entry">
+          <div class="title">Let'Swift 참가</div>
+          <div class="period">2024년</div>
+        </div>
+        <div class="simple-entry">
+          <div class="title"><a href="https://youtu.be/oqWFpT-3-Fs" target="_blank" style="color:inherit;text-decoration:none;">iOS Daejeon Club(iDC) 세미나 발표</a></div>
+          <div class="period">2023년 06월 (오프라인, 10+명)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Certification</h2>
+      <div class="simple-list">
+        <div class="simple-entry">
+          <div class="title">정보처리기능사</div>
+          <div class="period">한국산업인력공단 · 2022년 12월</div>
+        </div>
+        <div class="simple-entry">
+          <div class="title">전자기능사</div>
+          <div class="period">한국산업인력공단 · 2023년 06월</div>
+        </div>
+        <div class="simple-entry">
+          <div class="title">JLPT N4</div>
+          <div class="period">일본국제교육지원협회 · 2026년 01월</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</div>
+</body>
+</html>

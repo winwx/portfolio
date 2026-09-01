@@ -1,0 +1,6 @@
+.DS_Store
+.claude/
+resumes/
+assets/docs/*.pdf
+print/*.pdf
+assets/images/icon-ema.png

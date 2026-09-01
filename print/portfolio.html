@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>홍승재 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #e5e5e5; }
+  body {
+    font-family: "Noto Sans KR", sans-serif; color: #111111;
+    display: flex; flex-direction: column; align-items: center; gap: 24pt;
+    padding: 24pt 0;
+  }
+
+  /* A4 페이지 가이드 (화면 미리보기 전용, 인쇄 시 제거) */
+  .page {
+    width: 595pt;
+    height: 842pt;
+    background: #ffffff;
+    box-shadow: 0 1pt 3pt rgba(0,0,0,0.15), 0 0 0 1pt rgba(0,0,0,0.06);
+    padding: 44pt;
+    display: flex;
+    flex-direction: column;
+    gap: 40pt;
+    position: relative;
+  }
+  @media print {
+    html, body { background: #ffffff; padding: 0; gap: 0; }
+    .page { box-shadow: none; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+  }
+
+  /* ---- Page 1: 이력 요약 카드 ---- */
+  .bio-page { flex-direction: column; padding: 36pt; gap: 0; }
+
+  /* HStack { name_info, profile } */
+  .top-row { display: flex; gap: 20pt; }
+  .name-info { flex: 1; display: flex; flex-direction: column; gap: 6pt; }
+  .name-info h1 { font-size: 22pt; font-weight: 700; line-height: 1.3; }
+  .name-info .tagline { font-size: 12.5pt; font-weight: 700; line-height: 1.4; }
+  .name-info .desc { font-size: 8pt; font-weight: 400; line-height: 1.5; color: #6b7280; }
+  .name-info .desc p + p { margin-top: 6pt; }
+
+  /* HStack { works_vstack, contact_info_vstack } - 반반 */
+  .body-row { display: flex; gap: 20pt; margin-top: 20pt; }
+  .col-left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 20pt; }
+  .col-right { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 20pt; }
+
+  .section h2 { font-size: 10.5pt; font-weight: 700; line-height: 1.3; margin-bottom: 8pt; }
+  .section .list { display: flex; flex-direction: column; gap: 9pt; }
+  .entry .title { font-size: 9.5pt; font-weight: 700; line-height: 1.4; }
+  .entry .period { font-size: 8pt; font-weight: 400; line-height: 1.4; color: #6b7280; }
+
+  .contact-list { display: flex; flex-direction: column; gap: 6pt; }
+  .contact-list div { font-size: 9pt; font-weight: 400; line-height: 1.4; }
+
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 5pt; }
+  .pill {
+    font-size: 8pt; font-weight: 500; padding: 4pt 7pt;
+    border: 1pt solid #d8d8de; border-radius: 5pt; line-height: 1.4;
+  }
+
+  .photo { width: 133pt; height: 166pt; object-fit: cover; border-radius: 6pt; display: block; flex-shrink: 0; }
+
+  /* ---- Page 2~5: 프로젝트 상세 ---- */
+  .project { display: flex; flex-direction: column; gap: 20pt; }
+  .project-head { display: flex; align-items: center; gap: 10pt; }
+  .project-head-row { display: flex; align-items: center; gap: 10pt; }
+  .project-head img, .project-head-row img { width: 34pt; height: 34pt; border-radius: 8pt; display: block; }
+  .project-head h2 { font-size: 19pt; font-weight: 700; }
+  .project-head .inline-subtitle { font-size: 10pt; font-weight: 500; color: #6b7280; }
+  .project-tagline { font-size: 10.5pt; font-weight: 500; color: #6b7280; margin-top: -12pt; }
+
+  .block-label { font-size: 10.5pt; font-weight: 700; margin-bottom: 8pt; }
+  .project-info p { font-size: 9.5pt; line-height: 1.65; color: #6b7280; }
+
+  .contributions { display: flex; flex-direction: column; gap: 16pt; }
+  .contribution h3 { font-size: 10.5pt; font-weight: 700; margin-bottom: 6pt; }
+  .contribution ul { display: flex; flex-direction: column; gap: 5pt; }
+  .contribution li {
+    list-style: none; font-size: 9.5pt; line-height: 1.6; color: #6b7280;
+    padding-left: 12pt; position: relative;
+  }
+  .contribution li::before { content: "·"; position: absolute; left: 0; }
+
+  /* 사이드 프로젝트: 배지/소제목 없는 컴팩트 카드 */
+  .side-desc { font-size: 9.5pt; line-height: 1.65; color: #6b7280; margin-top: -4pt; }
+  .side-bullets { display: flex; flex-direction: column; gap: 6pt; }
+  .side-bullets li {
+    list-style: none; font-size: 9.5pt; line-height: 1.6; color: #6b7280;
+    padding-left: 12pt; position: relative;
+  }
+  .side-bullets li::before { content: "·"; position: absolute; left: 0; }
+</style>
+</head>
+<body>
+
+<!-- Page 1: 이력 요약 -->
+<div class="page bio-page">
+  <div class="top-row">
+    <div class="name-info">
+      <h1>홍승재</h1>
+      <div class="tagline">사용자의 편의성을 최우선으로 생각합니다</div>
+      <div class="desc">
+        <p>"내가 편하면, 사용자는 불편할 수 있다"는 마음가짐으로 제품 문제를 End-to-End로 해결합니다. UI의 미세한 오차, 아무도 이슈로 올리지 않은 불편함을 먼저 발견하고 해결하는 것을 개발자의 기준으로 삼습니다.</p>
+        <p>비웨이브(주)에는 iOS 엔지니어로 입사했지만, 마음결 Mini를 iOS로 단독 개발·배포한 데 이어 마음결 베이직의 Android 개발까지 함께 맡고 있습니다.</p>
+        <p>최근에는 AI가 팀원처럼 일할 수 있는 환경을 설계하는 데 집중합니다. Claude Code에 업무 매뉴얼과 품질 검사 규칙을 내장해 자동화 파이프라인을 구축했고, iOS에서 Android까지 확장 적용하고 있습니다.</p>
+      </div>
+    </div>
+    <img class="photo" src="../assets/images/profile_image.jpg" alt="홍승재 프로필 사진">
+  </div>
+
+  <div class="body-row">
+  <div class="col-left">
+    <div class="section">
+      <h2>Work Experience</h2>
+      <div class="list">
+        <div class="entry">
+          <div class="title">비웨이브(주)  /  iOS Developer</div>
+          <div class="period">2024년 07월 01일 ~ 재직 중</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Certification</h2>
+      <div class="list">
+        <div class="entry">
+          <div class="title">정보처리기능사  /  한국산업인력공단</div>
+          <div class="period">2022년 12월 취득</div>
+        </div>
+        <div class="entry">
+          <div class="title">전자기능사  /  한국산업인력공단</div>
+          <div class="period">2023년 06월 취득</div>
+        </div>
+        <div class="entry">
+          <div class="title">JLPT N4  /  일본국제교육지원협회</div>
+          <div class="period">2026년 01월 취득</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Activity</h2>
+      <div class="list">
+        <div class="entry">
+          <div class="title">교내 iOS 스터디 운영</div>
+          <div class="period">2022년 07월 ~ 2023년 01월</div>
+        </div>
+        <div class="entry">
+          <div class="title">신입생 iOS 멘토링</div>
+          <div class="period">2024년 03월 ~ 2024년 04월</div>
+        </div>
+        <div class="entry">
+          <div class="title">KWDC 참가</div>
+          <div class="period">2023년, 2024년</div>
+        </div>
+        <div class="entry">
+          <div class="title">Let'Swift</div>
+          <div class="period">2024년 참가</div>
+        </div>
+        <div class="entry">
+          <div class="title"><a href="https://youtu.be/oqWFpT-3-Fs" target="_blank" style="color:inherit;text-decoration:none;">iOS Daejeon Club(iDC) 세미나 발표</a></div>
+          <div class="period">2023년 06월 (오프라인, 10+명)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-right">
+    <div class="section">
+      <h2>Contact Information</h2>
+      <div class="contact-list">
+        <div>gtw030488@gmail.com</div>
+        <div>github.com/winwx</div>
+        <div>linkedin.com/in/hongsjae</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Skills</h2>
+      <div class="skills-wrap">
+        <span class="pill">Swift</span>
+        <span class="pill">SwiftUI</span>
+        <span class="pill">UIKit</span>
+        <span class="pill">Combine</span>
+        <span class="pill">TCA</span>
+        <span class="pill">MVVM</span>
+        <span class="pill">Needle</span>
+        <span class="pill">Swinject</span>
+        <span class="pill">RxSwift</span>
+        <span class="pill">ReactorKit</span>
+        <span class="pill">RxFlow</span>
+        <span class="pill">Tuist</span>
+        <span class="pill">SwiftLint</span>
+        <span class="pill">Xcode Cloud</span>
+        <span class="pill">Kotlin</span>
+        <span class="pill">StoreKit</span>
+        <span class="pill">Core Bluetooth</span>
+        <span class="pill">AVFoundation</span>
+        <span class="pill">Git</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Side Projects</h2>
+      <div class="list">
+        <div class="entry">
+          <div class="title">BallhuB  /  iOS</div>
+          <div class="period">2024.06 ~ 2025.05</div>
+        </div>
+        <div class="entry">
+          <div class="title">JOBIS v2  /  기획·개발</div>
+          <div class="period">2023.01 ~ 2024.01</div>
+        </div>
+        <div class="entry">
+          <div class="title">DMS  /  iOS</div>
+          <div class="period">2023.02 ~ 2023.06</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Educations</h2>
+      <div class="list">
+        <div class="entry">
+          <div class="title">대덕소프트웨어마이스터고등학교</div>
+          <div class="period">2022.03 입학, 2024.12 졸업</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- Page 2: 마음결 Mini -->
+<div class="page">
+  <div class="project">
+    <div class="project-head-row">
+      <img src="../assets/images/icon-maumgyeol-mini.png" alt="마음결 Mini 아이콘">
+      <h2>마음결 Mini</h2>
+    </div>
+    <div class="project-tagline">스마트폰 카메라만으로 스트레스 상태를 측정하는 정신건강 셀프케어 앱</div>
+
+    <div>
+      <div class="block-label">Project info</div>
+      <div class="project-info">
+        <p>뇌파(EEG)와 심박변이도(HRV) 등 생체신호를 AI로 분석해 정신건강을 관리하는 비웨이브의 셀프케어 플랫폼 '마음결'의 모바일 앱입니다. 기존에 안드로이드로만 서비스되던 앱을 iOS로 단독 개발·배포했으며, 2024년 1월부터 현재까지 운영하고 있습니다. 2026년 7월부터는 Android 버전 개발에도 함께 참여하고 있습니다.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="block-label">Key Contributions</div>
+      <div class="contributions">
+        <div class="contribution">
+          <h3>데이터 비교로 확인한 OS 간 측정 알고리즘 통일</h3>
+          <ul>
+            <li>iOS는 240fps로 요청했으나 실제로는 30fps로 사고캡되며 좌상단 40×40 ROI만 사용하고, Android는 뷰 축소본 기반 저품질 캡처를 쓰는 등 두 플랫폼의 측정 파이프라인이 서로 다르게 동작해 신호 품질 편차가 크다는 점을 Claude Code로 두 코드베이스를 함께 분석해 진단했습니다.</li>
+            <li>캡처 fps·해상도·ROI·노출 lock·valley window를 30fps·1280×720 raw·중앙 200×200 ROI·안착 1초 후 AE/AWB/AF lock으로 양 플랫폼에 동일하게 적용해, 단일 AI 모델이 두 OS 신호를 동일한 기준으로 판단할 수 있도록 통일했습니다.</li>
+            <li>배포 전후 DB 데이터(ppg_dq)를 비교해 효과를 검증했습니다 — 고품질(high) 비율이 iOS 40.1%→64.3%(+24.2%p), Android 38.7%→62.8%(+24.1%p)로 개선되었고, 저품질(low) 비율은 각각 -22.7%p, -21.8%p 감소했습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>카메라 기반 PPG 측정 파이프라인 최적화</h3>
+          <ul>
+            <li>240fps로 들어오는 카메라 프레임을 실시간으로 처리하는 PPG 측정 파이프라인에서, 매 프레임 새로 생성되던 CIContext를 lazy 인스턴스로 재사용해 GPU 컨텍스트 초기화 비용을 없앴습니다.</li>
+            <li>커스텀 픽셀 변환 함수를 CFDataGetBytePtr 기반 raw byte 직접 접근으로 바꿔 프레임당 약 1,600개씩 발생하던 객체 생성을 0개로 줄이고, 중복된 메인 스레드 디스패치 블록을 통합해 초당 디스패치 횟수를 절반으로 낮췄습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>글로벌 배포와 멤버십 결제</h3>
+          <ul>
+            <li>70여개국 언어로 앱을 현지화하고, 무료/유료 회원 분기와 연구독 할인율 표시를 포함한 멤버십 결제 기능을 구현하며 IAP 로직을 리팩토링했습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>Tuist 기반 Micro Feature Architecture 설계</h3>
+          <ul>
+            <li>Feature 23개, Core·Domain·Shared·UserInterface 13개로 총 36개 모듈을 분리해 빌드 시간과 변경 영향 범위를 최소화했습니다.</li>
+            <li>Configuration·Dependency·Environment 커스텀 Tuist Plugin을 직접 구현해, DEV/STAGE/PROD 멀티 환경 빌드 설정을 코드로 관리했습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>Xcode Cloud CI/CD 및 SwiftLint 자동화</h3>
+          <ul>
+            <li>ci_post_clone 스크립트에서 mise로 Tuist를 설치한 뒤 tuist install·generate를 자동 실행하도록 구성해, 클라우드 빌드 환경에서 프로젝트 생성이 실패하던 문제를 해결했습니다.</li>
+            <li>식별자 길이·함수 파라미터 개수 등을 제한하는 SwiftLint 커스텀 룰을 공통 스크립트로 만들어 전 모듈이 동일한 설정을 공유하도록 했습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 3: 마음결 베이직 -->
+<div class="page">
+  <div class="project">
+    <div class="project-head-row">
+      <img src="../assets/images/icon-maumgyeol-basic.png" alt="마음결 베이직 아이콘">
+      <h2>마음결 베이직</h2>
+    </div>
+    <div class="project-tagline">전문 측정 기기와 블루투스로 연결해 실시간 생체신호를 분석하는 B2B 정신건강 평가 앱</div>
+
+    <div>
+      <div class="block-label">Project info</div>
+      <div class="project-info">
+        <p>기관·전문가를 대상으로 태블릿과 측정 기기를 세트로 판매하고 월 구독료를 받는 비웨이브의 핵심 B2B 제품입니다. iOS 엔지니어이지만 제품 문제 해결을 위해 2026년 6월부터 Android 유지보수와 기능 개발을 함께 맡고 있습니다.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="block-label">Key Contributions</div>
+      <div class="contributions">
+        <div class="contribution">
+          <h3>Claude Code 활용 플랫폼 전환</h3>
+          <ul>
+            <li>AOS 담당자의 퇴사로 iOS 개발자였던 제가 Android 경험 없이 BLE 프로토콜 통합 개발을 단독으로 맡게 된 상황에서, Claude Code를 활용해 기존 Java 기반 SOSO 연결 코드를 분석하고 새 모듈을 Kotlin으로 작성했습니다.</li>
+            <li>듀얼 Bluetooth 통합을 완료했고, 기존 버그 7건을 함께 발견·수정했습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>이종 블루투스 기기 통합</h3>
+          <ul>
+            <li>BLE 기반 SOSO 기기와 Bluetooth Classic 기반 LinkBand 기기를 하나의 DeviceConnector 인터페이스로 추상화해, MainActivity가 기기 종류를 몰라도 동일하게 동작하도록 구조를 정리했습니다.</li>
+            <li>기기 교체나 신규 모델 추가 시에도 인터페이스 구현체만 추가하면 되도록 확장 가능한 구조를 마련했고, neuroNicle FX2(Laxtha) 등 신규 기기 지원도 같은 구조로 검토했습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>실시간 측정 반응성 개선</h3>
+          <ul>
+            <li>기존 Classic 기기의 블루투스 폴링 간격이 256ms로 길어, 측정 중 그래프와 수치가 끊기듯 갱신되는 문제가 있었습니다. 폴링 간격을 20ms로 줄이고 타이머 누적 드리프트를 sleep 보정으로 잡아, 그래프·수치가 끊김 없이 즉각 반영되도록 개선했습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>생체신호 품질 처리</h3>
+          <ul>
+            <li>LinkBand EEG 채널에 60Hz 노치필터를 적용해 전원 노이즈를 제거하고, SOSO PPG 채널에는 bandpass 필터와 글리치 가드, 기기별 gain 보정을 적용해 신호 품질을 안정화했습니다.</li>
+            <li>신호 상태를 allBad(전체 불량)/oneBad(일부 불량)/정상 3단계로 분기하는 후처리 로직을 구현해, 불량 신호를 조기에 판별하고 재측정을 유도하도록 했습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>데이터 정합성 디버깅</h3>
+          <ul>
+            <li>배터리 표시를 위해 추가했던 코드가 BLE GATT 큐 진행을 교란해 PPG·ACC notify 구독이 절반만 걸리는 버그를 원인 분석 끝에 발견하고, 문제가 되는 코드를 이전 정상 버전으로 롤백했습니다.</li>
+            <li>실측 로그에서 EEG:PPG:ACC 샘플 비율이 250:25:12.5(불량)에서 250:50:25(정상)로 복원된 것을 확인해 수정을 검증했습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 4: BallhuB + JOBIS v2 (Side Projects) -->
+<div class="page">
+  <div class="project">
+    <div class="project-head">
+      <img src="../assets/images/icon-ballhub.png" alt="BallhuB 아이콘">
+      <h2>BallhuB</h2>
+      <span class="inline-subtitle">iOS Developer</span>
+    </div>
+
+    <p class="side-desc">일일 방문자 6,000명 이상이 이용하는 해외 축구 팬 커뮤니티 앱으로, 응원 팀 선택·경기 일정·맞춤형 게시판 기능을 제공합니다. iOS 개발자로 2024년 6월부터 2025년 5월까지 참여했습니다.</p>
+
+    <ul class="side-bullets">
+      <li>Needle DI 구조에서 발생하던 초기화 순환 버그를 TCA(Scope) 구조로 전환하며 해결하고, 상태 변경 흐름을 단방향으로 정리해 화면이 늘어나며 발생하던 UI 멈춤 문제를 해결했습니다.</li>
+      <li>액세스 토큰 만료를 감지해 자동으로 재발급받고 실패한 요청을 이어서 재시도하는 JWT 자동 갱신 Provider를 구현해 로그인이 끊기는 경험을 없앴습니다.</li>
+      <li>Nuke ImagePipeline에 번들 스코프 DataCache를 구성해 메모리·디스크 이중 캐싱을 적용하고 JPEG 압축을 더해, 피드·게시판 스크롤 시 발생하던 버벅임을 해소했습니다.</li>
+    </ul>
+  </div>
+
+  <div class="project">
+    <div class="project-head">
+      <img src="../assets/images/icon-jobis.png" alt="JOBIS v2 아이콘">
+      <h2>JOBIS v2</h2>
+      <span class="inline-subtitle">기획·개발·운영</span>
+    </div>
+
+    <p class="side-desc">대덕소프트웨어마이스터고등학교 학생과 기업을 연결하는 채용 관리 서비스로, v1 사용자 피드백을 분석해 디자인과 아키텍처를 전면 개편했습니다. 2023년 1월부터 2024년 1월까지 6인 팀에서 기획부터 개발, 운영까지 주도적으로 참여했습니다.</p>
+
+    <ul class="side-bullets">
+      <li>App/Core/Data/Domain/Presentation/Flow 레이어드 아키텍처로 재설계하고, RxSwift + ReactorKit 기반 Reactor 44개로 화면별 상태 관리를, RxFlow Step 48개로 화면 전환 로직을 Reactor에서 분리했습니다.</li>
+      <li>Swinject Assembly로 Repository·UseCase·Presentation 계층의 의존성을 등록해, Container 기반으로 모듈 간 결합도를 낮췄습니다.</li>
+      <li>Presigned URL 기반 S3 업로드 구조를 도입해 서버를 거치지 않고 클라이언트에서 바로 업로드하도록 개선, 전교생 200명 이상이 동시에 사용하는 시점에도 서버 부하를 분산시켰습니다.</li>
+      <li>SwiftLint 코드 스타일 규칙과 PR 템플릿, CODEOWNERS 자동 지정을 도입해 팀원 모두가 일관된 기준으로 리뷰·병합할 수 있는 협업 문화를 만들었습니다.</li>
+    </ul>
+  </div>
+
+  <div class="project">
+    <div class="project-head">
+      <img src="../assets/images/icon-dms.png" alt="DMS 아이콘">
+      <h2>DMS</h2>
+      <span class="inline-subtitle">iOS Developer</span>
+    </div>
+
+    <p class="side-desc">대덕소프트웨어마이스터고등학교 기숙사 생활 전반(잔류 신청, 급식 확인, 자습실 예약, 공지사항)을 관리하는 교내 전공 동아리 앱입니다. 2023년 2월부터 6월까지 6인 팀에서 iOS 개발을 담당했습니다.</p>
+
+    <ul class="side-bullets">
+      <li>잔류 신청 기능을 API 연동부터 DataSource·Repository·UseCase·Entity까지 엔드투엔드로 전담 개발했습니다.</li>
+      <li>Auth·Points·Remains·School·Students·StudyRoom 등 7개 Domain을 Factory 패턴 기반으로 리팩토링해 모듈 구조를 정리했습니다.</li>
+      <li>Kingfisher 기반 이미지 캐싱을 도입해 프로필 사진 로딩을 개선했습니다.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Page 5: AI 업무 환경 설계 -->
+<div class="page">
+  <div class="project">
+    <div class="project-head-row">
+      <img src="../assets/images/icon-claude-workflow.webp" alt="AI 업무 환경 설계 아이콘">
+      <h2>AI 업무 환경 설계</h2>
+    </div>
+    <div class="project-tagline">누가 쓰더라도 같은 품질이 나오는 AI 업무 환경 설계</div>
+
+    <div>
+      <div class="block-label">Project info</div>
+      <div class="project-info">
+        <p>회의 내용을 정리하고 후속 액션으로 연결하는 과정, 그리고 AI 코딩 도구를 실무에 도입하는 과정 모두에서 같은 문제를 겪었습니다. 담당자나 대화 세션이 바뀌면 맥락과 규칙이 유실되어 결과물 품질이 들쭉날쭉했습니다. Claude를 Notion과 연결해 회의록을 자동 정리하고, 계획-실행-검증으로 이어지는 업무 하네스와 플랫폼별 배포 Skill을 설계해 누가 쓰더라도 같은 품질이 나오는 AI 업무 환경을 만들었습니다.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="block-label">Key Contributions</div>
+      <div class="contributions">
+        <div class="contribution">
+          <h3>Claude 기반 노션 회의록 자동 정리</h3>
+          <ul>
+            <li>Claude를 Notion 워크스페이스에 연결해, 회의가 끝나면 요청 한 번으로 핵심 논의사항·결정사항·액션 아이템으로 구분된 회의록을 자동 생성하도록 했습니다.</li>
+            <li>다음 회의 시점에는 이전 회의 내용을 자동으로 요약해 브리핑 문서를 생성, 참석자가 빠르게 맥락을 파악할 수 있게 했습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>계획부터 실행까지 이어지는 AI 업무 하네스 설계</h3>
+          <ul>
+            <li>'실행 전 반드시 계획을 세우고 확인을 받는다'는 절차를 AI의 기본 행동 규칙으로 고정하고, 작업 시작 시 업무 매뉴얼을 자동 로딩·작업 중 변경사항 기록·완료 시 품질 검사로 이어지는 3단계 파이프라인을 설계했습니다.</li>
+            <li>공통 규칙 + iOS 전용 + Android 전용 + 학습된 패턴으로 이어지는 4개 계층의 지식 체계를 구축하고, 계획 수립·코드 리뷰·품질 검사·인수인계 등 8가지 반복 업무를 명령어로 실행 가능한 표준 워크플로우로 정리했습니다.</li>
+          </ul>
+        </div>
+        <div class="contribution">
+          <h3>Android·iOS 배포 Skills 구축</h3>
+          <ul>
+            <li>플랫폼별로 다른 배포 절차(버전 관리, 스토어 심사 대응, 릴리즈 노트 작성 등)를 각각 Skill로 만들어 관리해, 배포마다 절차를 새로 설명하지 않아도 동일한 품질로 배포를 진행할 수 있도록 했습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
